@@ -1,3 +1,4 @@
+
 // sets up a rectangle object (there is a built in version which is apparently janky)
 class MyRect {
     constructor(x, y, w, h) {
@@ -32,7 +33,6 @@ for(let i=0;i<rectangles.length;i++){
 function grid(){
     var canvas = document.getElementById("can");
 var ctx = canvas.getContext("2d");
-
     ctx.beginPath();
     //v1
     ctx.moveTo(95,50);
@@ -48,7 +48,6 @@ var ctx = canvas.getContext("2d");
     ctx.lineTo(195,150);
     ctx.stroke();
 }
-
 // methods to draw x's and o's takes (x,y) where each are 0,1,2
 function ex(x, y){
     
