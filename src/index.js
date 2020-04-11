@@ -64,23 +64,26 @@ function o(x, y){
         ctx.font = "48px serif";
         ctx.fillText("O", 50+(50*x), 95+(50*y));
 }
+//this method is an ass. it basically goes through and makes a button for each of the boxes 
 function buildBtns() {
     for (var i = 0; i < rectangles.length; i++){
-       var btn = document.createElement("button");
-       document.body.appendChild(btn);
-       btn.setAttribute("id",i.toString()+"btn")
-    document.getElementById(i.toString()+"btn").style.padding = '25px 25px';
-    document.getElementById(i.toString()+"btn").style.position = 'absolute';
-    document.getElementById(i.toString()+"btn").style.background= 'none';
-    document.getElementById(i.toString()+"btn").style.border = 'none';
-    document.getElementById(i.toString()+"btn").style.left = rectangles[i].x.toString()+'px';
-    document.getElementById(i.toString()+"btn").style.top = rectangles[i].y.toString()+'px';
+       var btn = document.createElement("button"); //creates button
+       document.body.appendChild(btn); // puts button in body of html 
+       btn.setAttribute("id",i.toString()+"btn") //gives the button id : ibtn (where i is for loop variable)
+    document.getElementById(i.toString()+"btn").style.padding = '25px 25px'; //sets size
+    document.getElementById(i.toString()+"btn").style.position = 'absolute'; // says to give absolute coordinates
+    document.getElementById(i.toString()+"btn").style.background= 'none'; //no background
+    document.getElementById(i.toString()+"btn").style.border = 'none'; //no border
+    document.getElementById(i.toString()+"btn").style.left = rectangles[i].x.toString()+'px'; // x pos
+    document.getElementById(i.toString()+"btn").style.top = rectangles[i].y.toString()+'px'; // ypos
     //    btn.setAttribute('coords',rectangles[i].x.toString(),rectangles[i].y.toString(),(rectangles[i].x+50).toString(),(rectangles[i].y+50).toString());
     //    btn.addEventListener("click",squareClicked(i));
     }
 }
+// ignore this for now....
 function squareClicked(square){
 console.log("YAY"+square.toString());
 }
+
 buildBtns();
 grid();
