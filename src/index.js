@@ -1,6 +1,4 @@
-function startCanvas(){
-    
-}
+
 function circle(x,y){
     var canvas = document.getElementById("can");
     var ctx = canvas.getContext("2d");
@@ -34,3 +32,13 @@ grid();
 circle(.5,.5);
 circle(1.5,1.5);
 circle(2.5,2.5);
+
+var canvas = document.getElementById("can");
+var ctx = canvas.getContext("2d");
+
+function x(x, y){
+    var x = 'X';
+    ctx.font = "48px serif";
+    ctx.fillText(x, 100, 100);
+}
+x();
