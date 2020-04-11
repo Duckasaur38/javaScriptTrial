@@ -1,12 +1,6 @@
-var canvas = document.getElementById("can");
-var ctx = canvas.getContext("2d");
-
-function circle(x,y){
-    ctx.beginPath();
-    ctx.arc(45+(50*x),50+(50*y), 20, 0, 2 * Math.PI);
-    // x, y, diameter, ???, arc size in radians
-}
 function grid(){
+    var canvas = document.getElementById("can");
+    var ctx = canvas.getContext("2d");
     ctx.beginPath();
     //v1
     ctx.moveTo(95,50);
@@ -22,19 +16,27 @@ function grid(){
     ctx.lineTo(195,150);
     ctx.stroke();
 }
+function circle(x,y){
+    var canvas = document.getElementById("can");
+    var ctx = canvas.getContext("2d");
+    ctx.beginPath();
+    ctx.arc(45+(50*x),50+(50*y), 20, 0, 2 * Math.PI);
+    // x, y, diameter, ???, arc size in radians
+    ctx.stroke();
+}
+function x(x,y){
+    var canvas = document.getElementById("can");
+    var ctx = canvas.getContext("2d");  
+    var f = "x";
+    ctx.font = "70px serif";
+    ctx.fillText(f, 30+(50*x), 65+(50*y));
+    ctx.stroke();
+}
 
 grid();
 circle(.5,.5);
 circle(1.5,1.5);
 circle(2.5,2.5);
-
-var canvas = document.getElementById("can");
-var ctx = canvas.getContext("2d");
-
-function x(x, y){
-    var x = 'X';
-    ctx.font = "48px serif";
-    ctx.fillText(x, 100, 100);
-}
-x();
-ctx.stroke();
+x(0.5, 2.5);
+x(2.5, 1.5);
+x(1.5, 0.5)
