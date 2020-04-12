@@ -76,14 +76,56 @@ function buildBtns() {
     document.getElementById(i.toString()+"btn").style.border = 'none'; //no border
     document.getElementById(i.toString()+"btn").style.left = rectangles[i].x.toString()+'px'; // x pos
     document.getElementById(i.toString()+"btn").style.top = rectangles[i].y.toString()+'px'; // ypos
-    //    btn.setAttribute('coords',rectangles[i].x.toString(),rectangles[i].y.toString(),(rectangles[i].x+50).toString(),(rectangles[i].y+50).toString());
-    //    btn.addEventListener("click",squareClicked(i));
+    document.getElementById(i.toString()+"btn").onclick = function() {
+    squareClicked(this.id);
+  }
     }
 }
+ var turn = 0;
+ var squVals = new Array(9).fill(0);
 // ignore this for now....
+function checkWin(num){
+    if((squVals[num]==squVals[(num+3)%9] && squVals[num]==squVals[(num+6)%9])||(squVals[4]!=0 && ((squVals[0]==squVals[4]&& squVals[4]==squVals[8]) || (squVals[6]== squVals[4] && squVals[4]== squVals[2])))){
+        console.log("player "+squVals[num]+" wins!");
+    }
+    if(squVals[0]!=0){
+        if(squVals[0]==squVals[1] && squVals[1] == squVals[2]){
+        console.log("player "+squVals[num]+" wins vertically in column 1!");
+    }}
+    if(squVals[3]!=0){
+        if(squVals[3]==squVals[4] && squVals[4] ==squVals[5]){
+        console.log("player "+squVals[num]+" wins vertically in column 2!");
+    }}
+    if(squVals[6]!=0){
+        if(squVals[6]==squVals[7]&& squVals[7]==squVals[8]){
+        console.log("player "+squVals[num]+" wins vertically in column 3!");
+    }}
+    var draw = true;    
+    for(let i=0;i<10;i++){
+        if(squVals[i] == 0){
+            draw = false;
+            break;
+        }
+    }
+    if(draw){
+            console.log("DRAW!")
+        }
+    }
 function squareClicked(square){
-console.log("YAY"+square.toString());
+    document.getElementById(square).setAttribute('disabled','true');
+    turn++;
+    turn %=2;
+    var squNum = parseInt(square);
+    console.log(squNum);
+    if(turn == 0){
+        ex(Math.floor(squNum/3),squNum%3);
+        squVals[squNum] = 1;
+    }
+    else{
+        o(Math.floor(squNum/3),squNum%3);
+        squVals[squNum] = 2;
+    } 
+    checkWin(squNum);
 }
-
 buildBtns();
 grid();
