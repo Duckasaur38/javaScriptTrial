@@ -21,9 +21,9 @@ let rectangles = [];
 for(let i=0;i<3;i++){
     for(let j=0;j<3;j++){
         rectangle = new MyRect(51+(i*50),75+(j*50),50,50)
-    rectangles.push(rectangle);
-    console.log(rectangle.x);
-}
+        rectangles.push(rectangle);
+        console.log(rectangle.x);
+      }
 }
 //prints the rectangles
 for(let i=0;i<rectangles.length;i++){
@@ -32,7 +32,7 @@ for(let i=0;i<rectangles.length;i++){
 // draws grid
 function grid(){
     var canvas = document.getElementById("can");
-var ctx = canvas.getContext("2d");
+    var ctx = canvas.getContext("2d");
     ctx.beginPath();
     //v1
     ctx.moveTo(95,50);
@@ -50,7 +50,7 @@ var ctx = canvas.getContext("2d");
 }
 // methods to draw x's and o's takes (x,y) where each are 0,1,2
 function ex(x, y){
-    
+
     var canvas = document.getElementById("can");
     var ctx = canvas.getContext("2d");
         ctx.font = "48px serif";
@@ -58,58 +58,92 @@ function ex(x, y){
     }
 
 function o(x, y){
-    
+
     var canvas = document.getElementById("can");
     var ctx = canvas.getContext("2d");
         ctx.font = "48px serif";
         ctx.fillText("O", 50+(50*x), 95+(50*y));
 }
-//this method is an ass. it basically goes through and makes a button for each of the boxes 
+//this method is an ass. it basically goes through and makes a button for each of the boxes
 function buildBtns() {
     for (var i = 0; i < rectangles.length; i++){
-       var btn = document.createElement("button"); //creates button
-       document.body.appendChild(btn); // puts button in body of html 
-       btn.setAttribute("id",i.toString()+"btn") //gives the button id : ibtn (where i is for loop variable)
-    document.getElementById(i.toString()+"btn").style.padding = '25px 25px'; //sets size
-    document.getElementById(i.toString()+"btn").style.position = 'absolute'; // says to give absolute coordinates
-    document.getElementById(i.toString()+"btn").style.background= 'none'; //no background
-    document.getElementById(i.toString()+"btn").style.border = 'none'; //no border
-    document.getElementById(i.toString()+"btn").style.left = rectangles[i].x.toString()+'px'; // x pos
-    document.getElementById(i.toString()+"btn").style.top = rectangles[i].y.toString()+'px'; // ypos
-    document.getElementById(i.toString()+"btn").onclick = function() {
-    squareClicked(this.id);
-  }
+      var btn = document.createElement("button"); //creates button
+      document.body.appendChild(btn); // puts button in body of html
+      btn.setAttribute("id",i.toString()+"btn") //gives the button id : ibtn (where i is for loop variable)
+      document.getElementById(i.toString()+"btn").style.padding = '25px 25px'; //sets size
+      document.getElementById(i.toString()+"btn").style.position = 'absolute'; // says to give absolute coordinates
+      document.getElementById(i.toString()+"btn").style.background= 'none'; //no background
+      document.getElementById(i.toString()+"btn").style.border = 'none'; //no border
+      document.getElementById(i.toString()+"btn").style.left = rectangles[i].x.toString()+'px'; // x pos
+      document.getElementById(i.toString()+"btn").style.top = rectangles[i].y.toString()+'px'; // ypos
+      document.getElementById(i.toString()+"btn").onclick = function() { squareClicked(this.id);}
     }
 }
  var turn = 0;
  var squVals = new Array(9).fill(0);
-// ignore this for now....
+ 
 function checkWin(num){
-    if((squVals[num]==squVals[(num+3)%9] && squVals[num]==squVals[(num+6)%9])||(squVals[4]!=0 && ((squVals[0]==squVals[4]&& squVals[4]==squVals[8]) || (squVals[6]== squVals[4] && squVals[4]== squVals[2])))){
-        console.log("player "+squVals[num]+" wins!");
+    var checkAr = [];
+    for(let i =0; i<9;i++){
+        if(Math.floor(i/3)== Math.floor(num/3) && squVals[num] == squVals[i] && i!=num){
+            checkAr.push(i);
+        }
     }
-    if(squVals[0]!=0){
-        if(squVals[0]==squVals[1] && squVals[1] == squVals[2]){
-        console.log("player "+squVals[num]+" wins vertically in column 1!");
-    }}
-    if(squVals[3]!=0){
-        if(squVals[3]==squVals[4] && squVals[4] ==squVals[5]){
-        console.log("player "+squVals[num]+" wins vertically in column 2!");
-    }}
-    if(squVals[6]!=0){
-        if(squVals[6]==squVals[7]&& squVals[7]==squVals[8]){
-        console.log("player "+squVals[num]+" wins vertically in column 3!");
-    }}
-    var draw = true;    
+    if(checkAr.length == 2){
+        checkAr.push[num];
+        console.log("player "+squVals[num]+" wins!");
+        return;
+    }
+    else{
+        checkAr=[];
+    }
+    for(let i =0; i<9;i++){
+        if(num%3 == i%3 && squVals[num] == squVals[i] && i!=num){
+            checkAr.push(i);
+        }
+    }
+    if(checkAr.length == 2){
+        checkAr.push[num];
+        console.log("player "+squVals[num]+" wins!");
+        return;
+    }
+    else{
+        checkAr=[];
+    }
+    if(squVals[num]==squVals[4]){
+        for(x=0; x<2; x++){
+            var s1, s2;
+            if(x==0){
+                s1 = 8;
+                s2 = 0;
+            } 
+            else {
+              s1 = 6;
+              s2 = 2;
+            }
+            if(squVals[s1] == squVals[num] && squVals[s2] == squVals[num]){
+                console.log("Player "+squVals[num]+" wins!")
+            } else {
+                return;
+            }
+        }
+    }
+    else {
+        return;
+    }
+}
+
+function checkDraw(){
+    var draw = true;
     for(let i=0;i<10;i++){
         if(squVals[i] == 0){
             draw = false;
             break;
         }
-    }
-    if(draw){
-            console.log("DRAW!")
-        }
+        if(draw){
+                console.log("DRAW!")
+            }
+      }
     }
 function squareClicked(square){
     document.getElementById(square).setAttribute('disabled','true');
@@ -124,8 +158,9 @@ function squareClicked(square){
     else{
         o(Math.floor(squNum/3),squNum%3);
         squVals[squNum] = 2;
-    } 
+    }
     checkWin(squNum);
+    checkDraw();
 }
 buildBtns();
 grid();
