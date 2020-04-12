@@ -13,20 +13,6 @@
 // }
 
 
-// //goes through and sets coordinates of 9 rectangles (these will be the grid boxes)
-// function setUpRects(){
-//     for(let i=0;i<3;i++){
-//         for(let j=0;j<3;j++){
-//             rectangle = new MyRect(51+(i*50),75+(j*50), i+1, j+2, 50,50)
-//             rectangles.push(rectangle);
-//             console.log(rectangle.x);
-//         }
-//     }
-//     //prints the rectangles
-//     for(let i=0;i<rectangles.length;i++){
-//         console.log(rectangles[i]);
-//     }
-// }
 
 // //this method is an ass. it basically goes through and makes a button for each of the boxes 
 // //lol
@@ -53,7 +39,7 @@
 // draws grid
 let rectangles =[];
 class MyRect {
-    constructor(x, y, sclaedX, scaledY, w, h) {
+    constructor(x, y, scaledX, scaledY, w, h) {
         this.x = x;
         this.y = y;
         this.scaledX = scaledX;
@@ -70,7 +56,17 @@ class MyRect {
         };
     }
 }
-
+// all good
+// //goes through and sets coordinates of 9 rectangles (these will be the grid boxes)
+function setUpRects(){
+for(let i=0;i<3;i++){
+    for(let j=0;j<3;j++){
+        rectangle = new MyRect(51+(i*50),75+(j*50), i+1, j+2, 50,50)
+        rectangles.push(rectangle);
+        console.log(rectangle.x);
+    }
+}
+}
 function grid(){
     var canvas = document.getElementById("can");
     var ctx = canvas.getContext("2d");
@@ -96,7 +92,7 @@ function ex(x, y){
     var ctx = canvas.getContext("2d");
     ctx.font = "48px serif";
     ctx.fillText("X", 50+(50*x), 95+(50*y));
-    ctx.strike();
+    ctx.stroke();
 }
 
 function o(x, y){
@@ -170,8 +166,10 @@ function squareClicked(square){
     } 
     checkWin(squNum);
 }
-buildBtns();
+setUpRects();
 grid();
+buildBtns();
+
 
 
 // //checks the contents of each square and draws X or O if necessary
