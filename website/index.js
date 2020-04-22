@@ -1,12 +1,3 @@
-Skip to content
- Duckasaur38 / javaScriptTrial
-Code Issues 0 Pull requests 0 Projects 0 Actions Wiki Security 0 Pulse Community
-javaScriptTrial/src/index.js /
-@Duckasaur38 Duckasaur38 Update index.js
-68d4a73 4 minutes ago
-@Duckasaur38@JimmyJames22
-113 lines (108 sloc)  4.23 KB
-  
 
 let rectangles = [];
 //goes through and sets coordinates of 9 rectangles (these will be the grid boxes)
@@ -120,15 +111,3 @@ setUpRects();
 grid();
 buildBtns();
 }
-© 2020 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
